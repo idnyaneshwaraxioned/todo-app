@@ -6,13 +6,7 @@ const Todo = () => {
 	const [editIndex, setEditIndex] = useState();
 	const [btnflag, setbtnflag] = useState(true);
 
-	// const addItem = () => {
-	// 	const count = items.length;
-	// 	setItems([...items, { id: count + 1, task:inputData }]);
-	// 	setInputData('');
-	// }
-
-	const addData = ()=>{
+	const addtodo = ()=>{
 		if (inputData) {
 			const count = items.length;
 			setItems([...items, { id: count + 1, task: inputData }])
@@ -32,12 +26,11 @@ const Todo = () => {
 
 	const editItem = (val) => {
 		let findItem = items.find((ele) => {
-			return ele.id === val + 1;
+			return ele.id === val;
 		})
 		setInputData(findItem.task);
-		setEditIndex(val+1);
+		setEditIndex(val);
 		setbtnflag(false);
-		console.log('editIndex ' + editIndex);
 	}
 
 	const updateItem = ()=>{
@@ -51,6 +44,7 @@ const Todo = () => {
 		)
 		setInputData('');
 		setbtnflag(true);
+		setEditIndex();
 	}
 
 	return (
@@ -59,7 +53,7 @@ const Todo = () => {
 				<h1>React To-Do</h1>
 				<div className="todo-form">
 					<input type="text" placeholder="Enter your todo" value={inputData} onChange={(e) => setInputData(e.target.value)} />
-					{btnflag ? <button onClick={addData} className="addbtn">ADD</button>:
+					{btnflag ? <button onClick={addtodo} className="addbtn">ADD</button>:
 					<button className="updatebtn" onClick={updateItem}>Update</button>}
 				</div>
 				<div className="todo-item">
@@ -71,7 +65,7 @@ const Todo = () => {
 										<span>{elem.task}</span>
 										<div>
 											<button className="del" onClick={() => deleteItem(index)}>Del</button>
-											<button className="del" onClick={() => editItem(index)}>Edit</button>
+											<button className="del" onClick={() => editItem(index+1)}>Edit</button>
 										</div>
 									</li>
 								)
