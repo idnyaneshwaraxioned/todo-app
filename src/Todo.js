@@ -17,7 +17,6 @@ const Todo = () => {
 	}
 
 	const deleteItem = (val) => {
-		console.log(val)
 		const filterData = items.filter((elem, index) => {
 			return val !== index
 		})
@@ -65,7 +64,7 @@ const Todo = () => {
 										<span>{elem.task}</span>
 										<div>
 											<button className="del" onClick={() => deleteItem(index)}>Del</button>
-											<button className="del" onClick={() => editItem(index+1)}>Edit</button>
+											<button className="edit" onClick={() => editItem(index+1)}>Edit</button>
 										</div>
 									</li>
 								)
